@@ -91,4 +91,12 @@ export default () => {
 
     expect(newData).to.deep.equal(expectedData);
   });
+
+  it('should call custom sort function if one is provided', () => {
+    const expectedData = ['custom'];
+    const newData = fixDataFormat(data, ['borough', 'gender', 'name'],
+        (rows, data) => expectedData);
+
+    expect(newData).to.deep.equal(expectedData);
+  });
 };
