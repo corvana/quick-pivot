@@ -15,12 +15,13 @@ export default class Pivot {
    * @param {string} agg Aggregation category
    * @param {string} type Aggregation type, enumerated value
    * @param {string} header Table header (displayed at hte top left)
+   * @param {Function} optional custom sort function
    * @returns {Object} instantiated pivot object
   */
-  constructor(data, rows, cols, agg, type, header) {
+  constructor(data, rows, cols, agg, type, header, sortFunc) {
     if (!data) this.originalData = {};
     else {
-      data = fixDataFormat(data, rows);
+      data = fixDataFormat(data, rows, sortFunc);
       this.originalArgs = {data, rows, cols, agg, type, header};
       this.originalData = tableCreator(data, rows, cols, agg, type, header);
       this.uniqueValues = createUniqueValues(data);
